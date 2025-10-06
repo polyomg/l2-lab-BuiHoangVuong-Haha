@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>List Status Info</title>
+  <style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+<h1>Thông Tin Trạng Thái Của Mỗi Phần Tử</h1>
+
+<table border="1" style="width: 100%">
+  <thead>
+  <tr>
+    <th rowspan="2">HỌ VÀ TÊN</th>
+    <th colspan="6">CÁC THUỘC TÍNH TRẠNG THÁI</th>
+  </tr>
+  <tr>
+    <th>Index</th>
+    <th>Count</th>
+    <th>First</th>
+    <th>Last</th>
+    <th>Odd</th>
+    <th>Even</th>
+  </tr>
+  </thead>
+  <tbody>
+  <th:block th:each="staff, st : ${list}">
+    <tr th:style="@{|background-color:${st.odd ? 'pink' : 'cyan'}|}">
+      <td th:text="${#strings.capitalizeWords(staff.fullname)}"></td>
+      <td th:text="${st.index}"></td>
+      <td th:text="${st.count}"></td>
+      <td th:text="${st.first}"></td>
+      <td th:text="${st.last}"></td>
+      <td th:text="${st.odd}"></td>
+      <td th:text="${st.even}"></td>
+    </tr>
+  </th:block>
+  </tbody>
+</table>
+
+<div style="margin-top: 20px;">
+  <h3>Chú ý:</h3>
+  <ul>
+    <li>Index bắt đầu từ 0</li>
+    <li>Count bắt đầu từ 1</li>
+    <li>Các hàng lẻ (odd) có màu hồng (pink)</li>
+    <li>Các hàng chẵn (even) có màu xanh (cyan)</li>
+  </ul>
+</div>
+</body>
+</html>
